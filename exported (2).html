@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HÓRUS SUS - OEIRAS</title>
+
+    <!-- === PWA / Meta Tags para App Android === -->
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hórus SUS">
+    
+    <!-- Manifesto do App (embutido) -->
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiSE9SVVMgU1VTIC0gT0VJUkFTIiwic2hvcnRfbmFtZSI6IkhvcnVzIFNVUyIsImRlc2NyaXB0aW9uIjoiR3VpYSBJbnRlcmF0aXZvIGRlIFRyZWluYW1lbnRvIEhvcnVzIFNVUyAtIE9laXJhcyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMTExODI3IiwidGhlbWVfY29sb3IiOiIjNGY0NmU1IiwiY29ucyI6W3sic3JjIjoiaHR0cHM6Ly9wbGFjZWhvbGQuY28vMTkyeDE5Mi80ZjQ2ZTUvZmZmZmZmP3RleHQ9SCZmb250PWJvcHBpbnMiLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0LHsic3JjIjoiaHR0cHM6Ly9wbGFjZWhvbGQuY28vNTEyeDUxMi80ZjQ2ZTUvZmZmZmZmP3RleHQ9SCZmb250PWJvcHBpbnMiLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dfQ==">
+    <!-- Ícone para iOS -->
+    <link rel="apple-touch-icon" href="https://placehold.co/192x192/4f46e5/ffffff?text=H&font=poppins">
+    
+    <!-- === Fim das Tags PWA === -->
+    
+    <!-- Carrega o Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #10b981;
+            --accent-color: #3b82f6;
+            --dark-color: #1f2937;
+            --light-color: #f9fafb;
+            --whatsapp-color: #25D366;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            padding-bottom: 2rem;
+        }
+        
+        html {
+            height: -webkit-fill-available;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--tw-gradient-stops));
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn-gradient:active {
+            transform: translateY(-1px) scale(1.01);
+        }
+        
+        .header-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+        }
+        
+        .modal-content {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .modal-content.open {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        .logo {
+            max-height: 80px;
+            width: auto;
+        }
+        
+        @media (max-width: 640px) {
+            .logo {
+                max-height: 60px;
+            }
+            
+            .header-title {
+                font-size: 1.5rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+            }
+        }
+        
+        /* Solução para o cabeçalho fixo em dispositivos móveis */
+        .mobile-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: white;
+        }
+        
+        /* Ajuste para evitar sobreposição do cabeçalho */
+        .content-offset {
+            margin-top: 20px;
+        }
+        
+        /* Para dispositivos móveis, o cabeçalho não é fixo */
+        @media (max-width: 768px) {
+            .mobile-header {
+                position: relative;
+            }
+        }
+        
+        /* Botão de Suporte WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background-color: var(--whatsapp-color);
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .whatsapp-button i {
+            font-size: 30px;
+        }
+        
+        .whatsapp-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background-color: #333;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .whatsapp-button:hover .whatsapp-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Ajustes para mobile */
+        @media (max-width: 768px) {
+            .whatsapp-button {
+                width: 55px;
+                height: 55px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .whatsapp-button i {
+                font-size: 26px;
+            }
+            
+            .whatsapp-tooltip {
+                font-size: 13px;
+                padding: 6px 12px;
+                bottom: 65px;
+            }
+        }
+        
+        /* Modo Escuro */
+        .dark body {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: #e2e8f0;
+        }
+        
+        .dark .bg-white {
+            background-color: #2d3748;
+        }
+        
+        .dark .text-gray-800 {
+            color: #e2e8f0;
+        }
+        
+        .dark .text-gray-600 {
+            color: #a0aec0;
+        }
+        
+        .dark .header-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark .mobile-header {
+            background-color: #1a202c;
+        }
+        
+        .dark .card {
+            background-color: #2d3748;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #2d3748;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #4a5568;
+        }
+        
+        .dark .text-gray-500 {
+            color: #718096;
+        }
+        
+        .dark .bg-gray-100 {
+            background-color: #4a5568;
+        }
+        
+        /* Estilos para a barra de pesquisa */
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 20px 12px 50px;
+            border-radius: 50px;
+            border: 2px solid #e2e8f0;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .dark .search-input {
+            background-color: #2d3748;
+            border-color: #4a5568;
+            color: #e2e8f0;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+        }
+        
+        .dark .search-icon {
+            color: #718096;
+        }
+        
+        /* Estilos para o modal de medicamentos */
+        .med-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .med-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background-color 0.2s;
+        }
+        
+        .dark .med-item {
+            border-bottom-color: #4a5568;
+        }
+        
+        .med-item:hover {
+            background-color: #f7fafc;
+        }
+        
+        .dark .med-item:hover {
+            background-color: #4a5568;
+        }
+        
+        .med-name {
+            font-weight: 500;
+            color: #2d3748;
+        }
+        
+        .dark .med-name {
+            color: #e2e8f0;
+        }
+        
+        .med-details {
+            font-size: 0.875rem;
+            color: #718096;
+        }
+        
+        .dark .med-details {
+            color: #a0aec0;
+        }
+        
+        /* Estilos para avaliação */
+        .rating-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .rating-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        
+        .rating-btn.yes {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .dark .rating-btn.yes {
+            background-color: #14532d;
+            color: #86efac;
+        }
+        
+        .rating-btn.no {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .dark .rating-btn.no {
+            background-color: #7f1d1d;
+            color: #fca5a5;
+        }
+        
+        .rating-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .rating-thanks {
+            text-align: center;
+            padding: 15px;
+            color: #166534;
+            font-weight: 500;
+        }
+        
+        .dark .rating-thanks {
+            color: #86efac;
+        }
+        
+        /* Botão de tema */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        
+        .theme-toggle:hover {
+            background-color: #e2e8f0;
+        }
+        
+        .dark .theme-toggle:hover {
+            background-color: #4a5568;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-gray-800">
+
+    <!-- CABEÇALHO DO SITE -->
+    <header class="w-full bg-white header-shadow z-10 mobile-header">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center">
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="https://sts-gestao.s3.amazonaws.com/uploads/clientes_imagem/17ab2a009c559ad9bb9be968711a3461.jpeg" 
+                     alt="Brasão de Oeiras e Governo Municipal" 
+                     class="logo">
+            </div>
+            
+            <!-- Título -->
+            <div class="text-center sm:text-left sm:ml-6 mt-3 sm:mt-0">
+                <h1 class="header-title text-2xl md:text-3xl font-extrabold text-gray-800">
+                    HÓRUS SUS - <span class="text-green-600">OEIRAS</span>
+                </h1>
+                <p class="header-subtitle text-base md:text-lg text-gray-600 mt-1">Guia Interativo de Treinamento</p>
+            </div>
+            
+            <!-- Controles do cabeçalho -->
+            <div class="flex items-center mt-3 sm:mt-0">
+                <button id="themeToggle" class="theme-toggle ml-2">
+                    <i class="fas fa-moon dark:hidden text-gray-700"></i>
+                    <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="w-full max-w-5xl mx-auto my-8 px-4 content-offset">
+        <!-- Barra de Pesquisa -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Buscar tutoriais ou medicamentos..." 
+                   class="search-input">
+        </div>
+        
+        <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Sistema de Treinamento HÓRUS</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Selecione uma das opções abaixo para acessar os tutoriais interativos sobre o sistema HÓRUS SUS</p>
+        </div>
+        
+        <!-- Seção de Botões -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Botão Cadastro -->
+            <button 
+                onclick="showVideo('cadastro')"
+                class="btn-gradient from-green-500 to-green-700 text-white font-semibold py-6 px-6 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-opacity-50 flex flex-col items-center justify-center space-y-3 card pulse">
+                <span class="text-4xl">📝</span>
+                <span class="text-xl">Cadastro</span>
+                <p class="text-sm text-green-100 mt-1">Como cadastrar novos usuários no sistema</p>
+            </button>
+
+            <!-- Botão Entrada -->
+            <button 
+                onclick="showVideo('entrada')"
+                class="btn-gradient from-blue-500 to-blue-700 text-white font-semibold py-6 px-6 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 flex flex-col items-center justify-center space-y-3 card">
+                <span class="text-4xl">📦</span>
+                <span class="text-xl">Entrada</span>
+                <p class="text-sm text-blue-100 mt-1">Lançamento de entrada de medicamentos</p>
+            </button>
+
+            <!-- Botão Movimentação -->
+            <button 
+                onclick="showVideo('movimentacao')"
+                class="btn-gradient from-purple-500 to-purple-700 text-white font-semibold py-6 px-6 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-opacity-50 flex flex-col items-center justify-center space-y-3 card">
+                <span class="text-4xl">🚚</span>
+                <span class="text-xl">Movimentação</span>
+                <p class="text-sm text-purple-100 mt-1">Transferência entre estoques</p>
+            </button>
+
+            <!-- Botão Dispensação -->
+            <button 
+                onclick="showVideo('dispensacao')"
+                class="btn-gradient from-amber-500 to-amber-700 text-white font-semibold py-6 px-6 rounded-xl focus:outline-none focus:ring-4 focus:ring-amber-300 focus:ring-opacity-50 flex flex-col items-center justify-center space-y-3 card">
+                <span class="text-4xl">💊</span>
+                <span class="text-xl">Dispensação</span>
+                <p class="text-sm text-amber-100 mt-1">Realização de dispensação de medicamentos</p>
+            </button>
+            
+            <!-- Botão Medicamentos -->
+            <button 
+                onclick="showMedications()"
+                class="btn-gradient from-teal-500 to-teal-700 text-white font-semibold py-6 px-6 rounded-xl focus:outline-none focus:ring-4 focus:ring-teal-300 focus:ring-opacity-50 flex flex-col items-center justify-center space-y-3 card">
+                <span class="text-4xl">⚕️</span>
+                <span class="text-xl">Medicamentos</span>
+                <p class="text-sm text-teal-100 mt-1">Lista completa de medicamentos disponíveis</p>
+            </button>
+        </section>
+        
+        <!-- Informações Adicionais -->
+        <div class="mt-12 bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Sobre o Sistema HÓRUS</h3>
+            <p class="text-gray-600 mb-4">
+                O HÓRUS é o sistema de informação desenvolvido pelo Ministério da Saúde para o gerenciamento 
+                e controle das ações e serviços de saúde no âmbito do SUS. Este guia interativo foi desenvolvido 
+                para facilitar o treinamento dos profissionais de saúde no uso do sistema.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4">
+                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Cadastro</span>
+                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Entrada</span>
+                <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Movimentação</span>
+                <span class="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded">Dispensação</span>
+                <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">Treinamento</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="w-full text-center py-6 mt-auto">
+        <div class="max-w-5xl mx-auto px-4">
+            <p class="text-sm text-gray-600">
+                Desenvolvido por <span class="font-semibold">Eros Fernandes</span> - Secretaria Municipal de Saúde de Oeiras
+            </p>
+            <p class="text-xs text-gray-500 mt-2">
+                © 2023 HÓRUS SUS - Todos os direitos reservados
+            </p>
+        </div>
+    </footer>
+
+    <!-- Botão de Suporte WhatsApp -->
+    <a href="https://wa.me/5589994350078" target="_blank" class="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+        <div class="whatsapp-tooltip">Suporte Técnico</div>
+    </a>
+
+    <!-- Modal de Vídeo -->
+    <div id="videoModal" class="fixed inset-0 modal-overlay flex items-center justify-center p-4 z-50 hidden">
+        <div class="modal-content bg-white rounded-xl shadow-2xl w-full max-w-4xl overflow-hidden">
+            <!-- Cabeçalho do Modal -->
+            <div class="flex justify-between items-center p-4 md:p-5 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+                <h3 id="modalTitle" class="text-xl md:text-2xl font-semibold"></h3>
+                <button onclick="closeModal()" class="text-white hover:text-gray-200 transition-colors duration-200 p-1">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Corpo do Modal (Player de Vídeo) -->
+            <div class="p-4 md:p-6 bg-gray-50">
+                <div class="video-container">
+                    <iframe id="videoPlayer" 
+                            width="560" 
+                            height="315" 
+                            src="" 
+                            title="Vídeo de Treinamento" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+                
+                <!-- Avaliação de Conteúdo -->
+                <div class="border-t border-gray-200 pt-4 mt-6">
+                    <p class="text-gray-600 text-center mb-3">Este tutorial foi útil?</p>
+                    <div class="rating-container">
+                        <button class="rating-btn yes" onclick="rateVideo('yes')">
+                            <i class="fas fa-thumbs-up mr-2"></i> Sim
+                        </button>
+                        <button class="rating-btn no" onclick="rateVideo('no')">
+                            <i class="fas fa-thumbs-down mr-2"></i> Não
+                        </button>
+                    </div>
+                    <div id="ratingThanks" class="rating-thanks hidden">
+                        Obrigado pela sua avaliação!
+                    </div>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <p class="text-gray-600 text-sm">Clique fora do vídeo ou pressione ESC para fechar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Medicamentos -->
+    <div id="medicationsModal" class="fixed inset-0 modal-overlay flex items-center justify-center p-4 z-50 hidden">
+        <div class="modal-content bg-white rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden">
+            <!-- Cabeçalho do Modal -->
+            <div class="flex justify-between items-center p-4 md:p-5 bg-gradient-to-r from-teal-600 to-teal-700 text-white">
+                <h3 class="text-xl md:text-2xl font-semibold">Medicamentos Disponíveis</h3>
+                <button onclick="closeMedicationsModal()" class="text-white hover:text-gray-200 transition-colors duration-200 p-1">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Corpo do Modal (Lista de Medicamentos) -->
+            <div class="p-4 md:p-6 bg-gray-50">
+                <div class="search-container mb-4">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="medSearchInput" placeholder="Buscar medicamentos..." 
+                           class="search-input">
+                </div>
+                
+                <div class="med-list">
+                    <div class="med-item">
+                        <div class="med-name">Paracetamol 750mg</div>
+                        <div class="med-details">Analgésico e antitérmico | Comprimido</div>
+                    </div>
+                    <div class="med-item">
+                        <div class="med-name">Dipirona Sódica 500mg</div>
+                        <div class="med-details">Analgésico e antitérmico | Comprimido</div>
+                    </div>
+                    <div class="med-item">
+                        <div class="med-name">Ibuprofeno 400mg</div>
+                        <div class="med-details">Anti-inflamatório não esteroidal | Comprimido</div>
+                    </div>
+                    <div class="med-item">
+                        <div class="med-name">Amoxicilina 500mg</div>
+                        <div class="med-details">Antibiótico | Cápsula</div>
+                    </div>
+                    <div class="med-item">
+                        <div class="med-name">Omeprazol 20mg</div>
+                        <div class="med-details">Inibidor da bomba de prótons | Cápsula</div>
+                    </div>
+                    <div class="med-item">
+                        <div class="med-name">Losartana 50mg</div>
+                        <div class="med-details">Antagonista do receptor de angiotensina II | Comprimido</div>
+                    </div>
+                    <div class="med-item">
+                        <div class="med-name">Metformina 850mg</div>
+                        <div class="med-details">Antidiabético | Comprimido</div>
+                    </div>
+                    <div class="med-item">
+                        <div class="med-name">Atorvastatina 20mg</div>
+                        <div class="med-details">Estatina | Comprimido</div>
+                    </div>
+                    <div class="med-item">
+                        <div class="med-name">Captopril 25mg</div>
+                        <div class="med-details">Inibidor da ECA | Comprimido</div>
+                    </div>
+                    <div class="med-item">
+                        <div class="med-name">Diazepam 5mg</div>
+                        <div class="med-details">Ansiolítico e relaxante muscular | Comprimido</div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <p class="text-gray-600 text-sm">Clique fora da lista ou pressione ESC para fechar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Links dos vídeos
+        const videoLinks = {
+            'cadastro': {
+                title: '📝 Como Fazer Cadastro no Hórus',
+                url: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+            },
+            'entrada': {
+                title: '📦 Como Lançar Entrada de Medicamentos',
+                url: 'https://www.youtube.com/embed/L_jWHffIx5E'
+            },
+            'movimentacao': {
+                title: '🚚 Como Fazer Movimentação entre Estoques',
+                url: 'https://www.youtube.com/embed/5qap5aO4i9A'
+            },
+            'dispensacao': {
+                title: '💊 Como Realizar a Dispensação',
+                url: 'https://www.youtube.com/embed/3JZ_D3ELwOQ'
+            }
+        };
+
+        const modal = document.getElementById('videoModal');
+        const medicationsModal = document.getElementById('medicationsModal');
+        const modalContent = modal.querySelector('.modal-content');
+        const modalTitle = document.getElementById('modalTitle');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const ratingThanks = document.getElementById('ratingThanks');
+
+        function showVideo(topic) {
+            if (videoLinks[topic]) {
+                const videoData = videoLinks[topic];
+                modalTitle.textContent = videoData.title;
+                videoPlayer.src = videoData.url;
+                modal.classList.remove('hidden');
+                ratingThanks.classList.add('hidden');
+                
+                // Adicionar classe para animação
+                setTimeout(() => {
+                    modalContent.classList.add('open');
+                }, 10);
+            } else {
+                console.error('Tópico do vídeo não encontrado:', topic);
+            }
+        }
+
+        function closeModal() {
+            modalContent.classList.remove('open');
+            
+            // Esperar a animação terminar antes de esconder o modal
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                videoPlayer.src = '';
+            }, 300);
+        }
+        
+        function showMedications() {
+            medicationsModal.classList.remove('hidden');
+            
+            // Adicionar classe para animação
+            setTimeout(() => {
+                medicationsModal.querySelector('.modal-content').classList.add('open');
+            }, 10);
+        }
+        
+        function closeMedicationsModal() {
+            medicationsModal.querySelector('.modal-content').classList.remove('open');
+            
+            // Esperar a animação terminar antes de esconder o modal
+            setTimeout(() => {
+                medicationsModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Fechar modais ao clicar fora do conteúdo
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        medicationsModal.addEventListener('click', (e) => {
+            if (e.target === medicationsModal) {
+                closeMedicationsModal();
+            }
+        });
+
+        // Fechar modais com a tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                if (!modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+                if (!medicationsModal.classList.contains('hidden')) {
+                    closeMedicationsModal();
+                }
+            }
+        });
+
+        // Remover animação de pulse após o primeiro clique
+        document.querySelectorAll('.pulse').forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.remove('pulse');
+            });
+        });
+        
+        // Solução para o cabeçalho fixo em dispositivos móveis
+        function handleHeaderPosition() {
+            const header = document.querySelector('.mobile-header');
+            if (window.innerWidth <= 768) {
+                header.style.position = 'relative';
+            } else {
+                header.style.position = 'sticky';
+            }
+        }
+        
+        // Executar na carga da página e ao redimensionar
+        window.addEventListener('load', handleHeaderPosition);
+        window.addEventListener('resize', handleHeaderPosition);
+        
+        // Sistema de avaliação
+        function rateVideo(rating) {
+            // Aqui você poderia enviar a avaliação para um servidor
+            console.log('Vídeo avaliado como:', rating);
+            
+            // Mostrar mensagem de agradecimento
+            ratingThanks.classList.remove('hidden');
+            
+            // Desativar botões após votar
+            document.querySelector('.rating-btn.yes').disabled = true;
+            document.querySelector('.rating-btn.no').disabled = true;
+        }
+        
+        // Sistema de busca
+        const searchInput = document.getElementById('searchInput');
+        const medSearchInput = document.getElementById('medSearchInput');
+        const cards = document.querySelectorAll('.card');
+        const medItems = document.querySelectorAll('.med-item');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            cards.forEach(card => {
+                const title = card.querySelector('span.text-xl').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        medSearchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            medItems.forEach(item => {
+                const name = item.querySelector('.med-name').textContent.toLowerCase();
+                const details = item.querySelector('.med-details').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || details.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Modo escuro
+        const themeToggle = document.getElementById('themeToggle');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        });
+        
+        // Verificar preferência salva
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
