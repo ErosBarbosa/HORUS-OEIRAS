@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntegraFarma Oeiras | Acesso, Capacitação e Dados</title>
+  <meta name="description" content="Portal municipal IntegraFarma Oeiras: guia de medicamentos, gestão de acessos, trilha de aprendizagem e inteligência de dados para a assistência farmacêutica.">
+  <meta name="theme-color" content="#f97316">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=1.0.0">
+  <script>
+    (function initThemeEarly() {
+      var key = "integrafarma_theme";
+      var legacy = "theme";
+      var saved = localStorage.getItem(key) || localStorage.getItem(legacy);
+      if (saved === "dark" || (!saved && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    }());
+  </script>
+</head>
+<body>
+  <div class="background-shapes" aria-hidden="true">
+    <div class="shape shape-a"></div>
+    <div class="shape shape-b"></div>
+    <div class="shape shape-c"></div>
+  </div>
+
+  <div class="page-wrapper">
+    <header class="header card-surface">
+      <div class="brand-area">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img">
+            <path d="M12 2a3 3 0 0 0-3 3v1.1A5.5 5.5 0 0 0 4 11.5v1a5.5 5.5 0 0 0 5 5.4V19a3 3 0 0 0 6 0v-1.1a5.5 5.5 0 0 0 5-5.4v-1A5.5 5.5 0 0 0 15 6.1V5a3 3 0 0 0-3-3Zm-1 3a1 1 0 1 1 2 0v.5h-2V5Zm-4.8 6.5A3.5 3.5 0 0 1 9.7 8h4.6a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1-3.5 3.5H9.7a3.5 3.5 0 0 1-3.5-3.5v-1ZM11 19v-1h2v1a1 1 0 1 1-2 0Z"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <p class="eyebrow">Assistência Farmacêutica Municipal</p>
+          <h1>IntegraFarma Oeiras</h1>
+          <p class="subtitle">Acesso, capacitação e dados para fortalecer o cuidado contínuo no SUS.</p>
+        </div>
+      </div>
+      <button id="themeToggle" class="theme-btn" type="button" aria-label="Alternar tema">
+        <span class="theme-icon moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+          </svg>
+        </span>
+        <span class="theme-icon sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4.8a1 1 0 0 1 1 1V7a1 1 0 1 1-2 0V5.8a1 1 0 0 1 1-1Zm0 12.2a1 1 0 0 1 1 1v1.2a1 1 0 1 1-2 0V18a1 1 0 0 1 1-1Zm7.2-6a1 1 0 0 1 1 1 1 1 0 0 1-1 1H18a1 1 0 1 1 0-2h1.2ZM6 12a1 1 0 0 1-1 1H3.8a1 1 0 1 1 0-2H5a1 1 0 0 1 1 1Zm10.09-5.09a1 1 0 0 1 1.42 0l.86.85a1 1 0 1 1-1.42 1.42l-.85-.86a1 1 0 0 1 0-1.41ZM6.33 16.66a1 1 0 0 1 1.42 0l.85.86a1 1 0 1 1-1.41 1.41l-.86-.85a1 1 0 0 1 0-1.42Zm12.04 1.42a1 1 0 0 1-1.42 0l-.86-.85a1 1 0 0 1 1.42-1.42l.85.86a1 1 0 0 1 0 1.41ZM7.76 7.76a1 1 0 0 1-1.41 0l-.86-.85a1 1 0 0 1 1.42-1.42l.85.86a1 1 0 0 1 0 1.41ZM12 8.6a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 0 1 0-6.8Z"></path>
+          </svg>
+        </span>
+        <span id="themeLabel">Tema</span>
+      </button>
+    </header>
+
+    <section class="hero card-surface">
+      <div class="hero-content">
+        <p class="chip">Solução municipal integrada</p>
+        <h2>Portal único para operação farmacêutica, suporte às equipes e trilha de aprendizagem</h2>
+        <p>
+          O IntegraFarma organiza os fluxos locais sobre a base oficial do Hórus, com foco em
+          padronização, agilidade de atendimento, interiorização do acesso e decisões orientadas por dados.
+        </p>
+        <div class="hero-actions">
+          <a href="#modulos" class="btn btn-primary">Ver módulos</a>
+          <a href="#tutorials" class="btn btn-secondary">Abrir tutoriais</a>
+        </div>
+      </div>
+      <aside class="hero-stats" aria-label="Resumo do portal">
+        <article class="stat-card">
+          <p class="stat-label">Módulos ativos</p>
+          <p class="stat-value">4</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Tutoriais essenciais</p>
+          <p class="stat-value">4</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Suporte oficial</p>
+          <p class="stat-value">WhatsApp</p>
+        </article>
+      </aside>
+    </section>
+
+    <section id="modulos" class="modules">
+      <div class="section-head">
+        <p class="section-eyebrow">Módulos</p>
+        <h3>Ambiente unificado da assistência farmacêutica</h3>
+      </div>
+
+      <div class="module-grid">
+        <article class="module-card card-surface" data-tags="medicamentos guia catalogo padronizados busca">
+          <span class="module-badge">Guia Municipal de Medicamentos</span>
+          <h4>Busca rápida dos itens padronizados</h4>
+          <p>Consulta por nome, código e categoria para reduzir inconsistências e acelerar o atendimento.</p>
+          <a class="btn btn-primary" href="https://erosbarbosa.github.io/medicamentos/" target="_blank" rel="noopener noreferrer">Abrir guia</a>
+        </article>
+
+        <article class="module-card card-surface" data-tags="cadastro acessos vinculos troca ubs perfil">
+          <span class="module-badge">Gestão de Acessos e Vínculos</span>
+          <h4>Cadastro, atualização de perfil e troca de UBS</h4>
+          <p>Fluxo simplificado para manter continuidade operacional e evitar retrabalho administrativo.</p>
+          <a class="btn btn-primary" href="https://erosbarbosa.github.io/cadastrohorus/formulario/index.html?v=v6.7" target="_blank" rel="noopener noreferrer">Abrir gestão</a>
+        </article>
+
+        <article class="module-card card-surface" data-tags="trilha aprendizagem treinamento videos capacitacao">
+          <span class="module-badge">Trilha de Aprendizagem</span>
+          <h4>Treinamento guiado para novos e antigos usuários</h4>
+          <p>Biblioteca de vídeos passo a passo para padronizar a rotina e apoiar sede e interior.</p>
+          <a class="btn btn-secondary" href="#tutorials">Ver trilha</a>
+        </article>
+
+        <article class="module-card card-surface" data-tags="painel inteligencia dados dashboard monitoramento">
+          <span class="module-badge">Painel de Inteligência</span>
+          <h4>Monitoramento para decisão de gestão</h4>
+          <p>Módulo em expansão para consolidação de indicadores e acompanhamento do abastecimento municipal.</p>
+          <button id="openPanelModal" class="btn btn-secondary" type="button">Saiba mais</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="tutorials" class="tutorials card-surface">
+      <div class="section-head">
+        <p class="section-eyebrow">Trilha de aprendizagem</p>
+        <h3>Tutoriais para rotina do sistema oficial</h3>
+      </div>
+
+      <label class="search-field" for="tutorialSearch">
+        <span aria-hidden="true">Buscar</span>
+        <input type="text" id="tutorialSearch" placeholder="Buscar por cadastro, entrada, movimentação ou dispensação">
+      </label>
+
+      <div id="tutorialGrid" class="tutorial-grid">
+        <article class="tutorial-card" data-tags="cadastro novo usuario acesso perfil">
+          <div class="tutorial-head">
+            <h4>Cadastro de usuários</h4>
+            <p>Passo a passo para incluir novos profissionais no fluxo correto.</p>
+          </div>
+          <div class="tutorial-actions">
+            <button class="btn btn-primary" type="button" data-open-tutorial="cadastro">Assistir</button>
+            <div class="feedback-block">
+              <p>Este tutorial ajudou?</p>
+              <div class="feedback-buttons">
+                <button type="button" data-feedback="yes" data-tutorial="cadastro">Sim</button>
+                <button type="button" data-feedback="no" data-tutorial="cadastro">Não</button>
+              </div>
+              <small id="feedbackCount-cadastro">Sem avaliações ainda.</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="tutorial-card" data-tags="entrada medicamentos estoque recebimento">
+          <div class="tutorial-head">
+            <h4>Entrada de medicamentos</h4>
+            <p>Registro correto da entrada para manter rastreabilidade do estoque.</p>
+          </div>
+          <div class="tutorial-actions">
+            <button class="btn btn-primary" type="button" data-open-tutorial="entrada">Assistir</button>
+            <div class="feedback-block">
+              <p>Este tutorial ajudou?</p>
+              <div class="feedback-buttons">
+                <button type="button" data-feedback="yes" data-tutorial="entrada">Sim</button>
+                <button type="button" data-feedback="no" data-tutorial="entrada">Não</button>
+              </div>
+              <small id="feedbackCount-entrada">Sem avaliações ainda.</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="tutorial-card" data-tags="movimentacao transferencia unidades almoxarifado">
+          <div class="tutorial-head">
+            <h4>Movimentação entre estoques</h4>
+            <p>Procedimento para transferências entre unidades com controle seguro.</p>
+          </div>
+          <div class="tutorial-actions">
+            <button class="btn btn-primary" type="button" data-open-tutorial="movimentacao">Assistir</button>
+            <div class="feedback-block">
+              <p>Este tutorial ajudou?</p>
+              <div class="feedback-buttons">
+                <button type="button" data-feedback="yes" data-tutorial="movimentacao">Sim</button>
+                <button type="button" data-feedback="no" data-tutorial="movimentacao">Não</button>
+              </div>
+              <small id="feedbackCount-movimentacao">Sem avaliações ainda.</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="tutorial-card" data-tags="dispensacao paciente receita atendimento">
+          <div class="tutorial-head">
+            <h4>Dispensação</h4>
+            <p>Fluxo de dispensação para garantir atendimento com consistência e rapidez.</p>
+          </div>
+          <div class="tutorial-actions">
+            <button class="btn btn-primary" type="button" data-open-tutorial="dispensacao">Assistir</button>
+            <div class="feedback-block">
+              <p>Este tutorial ajudou?</p>
+              <div class="feedback-buttons">
+                <button type="button" data-feedback="yes" data-tutorial="dispensacao">Sim</button>
+                <button type="button" data-feedback="no" data-tutorial="dispensacao">Não</button>
+              </div>
+              <small id="feedbackCount-dispensacao">Sem avaliações ainda.</small>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="support card-surface">
+      <div class="support-content">
+        <p class="section-eyebrow">Suporte técnico</p>
+        <h3>Canal oficial para dúvidas operacionais</h3>
+        <p>Use o canal de suporte para dúvidas sobre acesso, rotina de registro e fluxos de atendimento.</p>
+      </div>
+      <a class="btn btn-primary support-btn" href="https://wa.me/5589994350078" target="_blank" rel="noopener noreferrer" aria-label="Abrir suporte no WhatsApp">
+        Falar no WhatsApp
+      </a>
+    </section>
+
+    <footer class="footer">
+      <p>IntegraFarma Oeiras • Secretaria Municipal de Saúde de Oeiras</p>
+      <p>Base oficial: sistema Hórus | <span id="currentYear"></span></p>
+    </footer>
+  </div>
+
+  <a href="https://wa.me/5589994350078" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Abrir suporte técnico no WhatsApp">
+    <span aria-hidden="true">WhatsApp</span>
+  </a>
+
+  <div id="videoModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+    <div class="modal-content card-surface" role="document">
+      <div class="modal-head">
+        <h4 id="videoModalTitle">Tutorial</h4>
+        <button id="closeVideoModal" type="button" aria-label="Fechar tutorial">Fechar</button>
+      </div>
+      <div class="video-frame">
+        <iframe id="videoPlayer" title="Player de tutorial" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <p class="modal-help">Pressione ESC para fechar.</p>
+    </div>
+  </div>
+
+  <div id="panelModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="panelModalTitle">
+    <div class="modal-content card-surface panel-modal" role="document">
+      <div class="modal-head">
+        <h4 id="panelModalTitle">Painel de Inteligência</h4>
+        <button id="closePanelModal" type="button" aria-label="Fechar modal">Fechar</button>
+      </div>
+      <p>Este módulo está em expansão para consolidar indicadores operacionais e assistenciais em uma visão única de gestão.</p>
+      <p>Enquanto isso, os dados continuam sendo acompanhados pelos dashboards oficiais já publicados pela equipe municipal.</p>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js?v=1.0.0" defer></script>
+</body>
+</html>

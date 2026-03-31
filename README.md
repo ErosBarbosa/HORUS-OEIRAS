@@ -1,94 +1,77 @@
-# HÓRUS SUS - OEIRAS
+# IntegraFarma Oeiras
 
-Sistema de treinamento interativo para o sistema HÓRUS SUS da Secretaria Municipal de Saúde de Oeiras.
+Portal municipal de acesso, capacitacao e dados para fortalecer a assistencia
+farmaceutica no SUS de Oeiras-PI.
 
-## 📋 Descrição
+## Descricao
 
-Este projeto é um guia interativo de treinamento desenvolvido para facilitar o aprendizado e uso do sistema HÓRUS SUS pelos profissionais de saúde do município de Oeiras. O sistema oferece tutoriais em vídeo, acesso à lista de medicamentos e suporte técnico direto via WhatsApp.
+Este repositorio publica o novo portal web do **IntegraFarma Oeiras**. O
+projeto reposiciona a experiencia municipal com marca propria, mantendo o
+sistema oficial como base operacional e conectando, em um unico ambiente:
 
-## 🌟 Funcionalidades
+- Guia Municipal de Medicamentos
+- Gestao de Acessos e Vinculos
+- Trilha de Aprendizagem (videos)
+- Painel de Inteligencia (em expansao)
 
-### ✅ Tutoriais Interativos
-- **Cadastro**: Como cadastrar novos usuários no sistema
-- **Entrada**: Lançamento de entrada de medicamentos
-- **Movimentação**: Transferência entre estoques
-- **Dispensação**: Realização de dispensação de medicamentos
+## Modulos e links oficiais
 
-### 🧪 Sistema de Pesquisa
-- Barra de busca para encontrar rapidamente tutoriais
-- Pesquisa dentro da lista de medicamentos
+- Guia Municipal de Medicamentos:
+  `https://erosbarbosa.github.io/medicamentos/`
+- Gestao de Acessos e Vinculos:
+  `https://erosbarbosa.github.io/cadastrohorus/formulario/index.html?v=v6.7`
+- Suporte tecnico (WhatsApp):
+  `https://wa.me/5589994350078`
 
-### 🌙 Modo Escuro
-- Alternância entre modo claro e escuro
-- Persistência da preferência do usuário
+## Funcionalidades da versao atual
 
-### 💊 Lista de Medicamentos
-- Acesso completo a todos os medicamentos disponíveis
-- Interface intuitiva e fácil de navegar
+- Hub de modulos com foco em operacao farmaceutica municipal.
+- Busca de tutoriais por palavra-chave.
+- Modal de video com fechamento por clique externo e tecla ESC.
+- Feedback rapido "Sim/Nao" por tutorial.
+- Modo claro/escuro com persistencia em `localStorage`.
+- Layout responsivo para desktop, tablet e smartphone.
 
-### ⭐ Avaliação de Conteúdo
-- Sistema de feedback "Sim/Não" para os tutoriais
-- Registro de utilidade dos conteúdos
+## Estrutura de arquivos
 
-### 📞 Suporte Técnico
-- Botão flutuante para contato direto via WhatsApp
-- Link para o número +55 (89) 9945-0078
+```text
+index.html
+assets/
+  css/
+    styles.css
+  js/
+    app.js
+HórusOeiras.html   (legado; nao e mais a entrada principal)
+README.md
+LICENSE
+```
 
-## 🛠️ Tecnologias Utilizadas
+## Publicacao no GitHub Pages
 
-- **HTML5**
-- **CSS3** (com Tailwind CSS)
-- **JavaScript** (Vanilla)
-- **Font Awesome** (ícones)
-- **Google Fonts** (Poppins)
+1. Garanta que a branch `main` esteja atualizada.
+2. Em **Settings > Pages**, selecione:
+3. **Source**: Deploy from a branch.
+4. **Branch**: `main` / `(root)`.
+5. A URL principal passa a carregar por `index.html` na raiz.
 
-## 📱 Responsividade
+## Tecnologias
 
-O sistema é totalmente responsivo e funciona perfeitamente em:
-- Desktops
-- Tablets
-- Smartphones
+- HTML5
+- CSS3 (design system proprio)
+- JavaScript vanilla
+- Google Fonts (`Sora`, `Plus Jakarta Sans`)
 
-## 🚀 Como Usar
-
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/horus-sus-oeiras.git
-   ```
-
-2. Abra o arquivo `index.html` no seu navegador preferido
-
-3. Explore os tutoriais e funcionalidades
-
-## 🎨 Design
-
-O projeto utiliza um design moderno e intuitivo com:
-- Gradientes suaves
-- Animações e transições suaves
-- Ícones representativos
-- Layout responsivo
-- Paleta de cores acessível
-
-## 👨‍💻 Desenvolvedor
+## Desenvolvedor
 
 **Eros Fernandes Aquino do Nascimento Barbosa**
+
 - Engenheiro de Software
-- Pós-graduado em Inteligência Artificial
-- MBA em Cibersegurança e Gestão de Risco
-- Professor SEDUC-PI (Análise e Desenvolvimento de Sistemas)
-- Coordenador de Tecnologia e Informação da Secretaria Municipal de Saúde De Oeiras.
-  
-## 📄 Licença
+- Pos-graduado em Inteligencia Artificial
+- MBA em Ciberseguranca e Gestao de Risco
+- Professor SEDUC-PI (Analise e Desenvolvimento de Sistemas)
+- Coordenador de Tecnologia e Informacao da Secretaria Municipal de Saude de Oeiras
 
-Este projeto é de uso exclusivo da Secretaria Municipal de Saúde de Oeiras.
+## Licenca
 
-## 🙏 Agradecimentos
-
-- Ministério da Saúde pelo sistema HÓRUS
-- A Paciência de EROS.
-
----
-
-<p align="center">
-  Desenvolvido com ❤️ por Eros Fernandes
-</p>
+Uso institucional da Secretaria Municipal de Saude de Oeiras, conforme
+`LICENSE`.
