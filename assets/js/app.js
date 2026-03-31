@@ -193,11 +193,26 @@ function initFeedback() {
         state[tutorial].no += 1;
       }
 
+      buttons
+        .filter((item) => item.dataset.tutorial === tutorial)
+        .forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+
       saveFeedbackState(state);
       renderFeedbackCounters(state);
+      showFeedbackToast("Feedback registrado. Obrigado.");
       button.blur();
     });
   });
+}
+
+function showFeedbackToast(message) {
+  const toast = byId("feedbackToast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+  clearTimeout(showFeedbackToast.timer);
+  showFeedbackToast.timer = setTimeout(() => toast.classList.add("hidden"), 1800);
 }
 
 function initPanelModal() {
@@ -226,8 +241,30 @@ function initYear() {
   year.textContent = String(new Date().getFullYear());
 }
 
+function initReveal() {
+  const items = [...document.querySelectorAll("[data-reveal]")];
+  if (!items.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("reveal-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  items.forEach((item, index) => {
+    item.style.transitionDelay = `${Math.min(index * 60, 240)}ms`;
+    observer.observe(item);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
+  initReveal();
   initTutorialSearch();
   initVideoModal();
   initFeedback();
