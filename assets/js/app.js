@@ -2,26 +2,56 @@ const STORAGE_THEME_KEY = "integrafarma_theme";
 const LEGACY_THEME_KEY = "theme";
 const STORAGE_FEEDBACK_KEY = "integrafarma_tutorial_feedback_v1";
 
+// Atualize os links dos videos aqui quando voce me enviar.
 const TUTORIALS = {
   cadastro: {
     title: "Cadastro de usuarios",
-    url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    duration: "3-5 min",
+    stage: "Etapa 1",
   },
   entrada: {
     title: "Entrada de medicamentos",
-    url: "https://www.youtube.com/embed/L_jWHffIx5E",
+    url: "https://www.youtube.com/watch?v=L_jWHffIx5E",
+    duration: "4-6 min",
+    stage: "Etapa 2",
   },
   movimentacao: {
     title: "Movimentacao entre estoques",
-    url: "https://www.youtube.com/embed/5qap5aO4i9A",
+    url: "https://www.youtube.com/watch?v=5qap5aO4i9A",
+    duration: "4-6 min",
+    stage: "Etapa 3",
   },
   dispensacao: {
     title: "Dispensacao",
-    url: "https://www.youtube.com/embed/3JZ_D3ELwOQ",
+    url: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+    duration: "5-8 min",
+    stage: "Etapa 4",
   },
 };
 
 const byId = (id) => document.getElementById(id);
+
+function toEmbedUrl(url) {
+  const value = String(url || "").trim();
+  if (!value) return "";
+
+  if (value.includes("youtube.com/embed/")) {
+    return value;
+  }
+
+  const watchMatch = value.match(/[?&]v=([^&]+)/);
+  if (watchMatch?.[1]) {
+    return `https://www.youtube.com/embed/${watchMatch[1]}`;
+  }
+
+  const shortMatch = value.match(/youtu\.be\/([^?&/]+)/);
+  if (shortMatch?.[1]) {
+    return `https://www.youtube.com/embed/${shortMatch[1]}`;
+  }
+
+  return value;
+}
 
 function safeParseJson(raw, fallback) {
   try {
@@ -111,9 +141,10 @@ function initVideoModal() {
   const modal = byId("videoModal");
   const closeButton = byId("closeVideoModal");
   const title = byId("videoModalTitle");
+  const meta = byId("videoModalMeta");
   const player = byId("videoPlayer");
   const triggers = [...document.querySelectorAll("[data-open-tutorial]")];
-  if (!modal || !closeButton || !title || !player || !triggers.length) return;
+  if (!modal || !closeButton || !title || !meta || !player || !triggers.length) return;
 
   triggers.forEach((trigger) => {
     trigger.addEventListener("click", () => {
@@ -121,7 +152,9 @@ function initVideoModal() {
       const tutorial = TUTORIALS[key];
       if (!tutorial) return;
       title.textContent = tutorial.title;
-      player.src = `${tutorial.url}?autoplay=1&rel=0`;
+      meta.textContent = `${tutorial.stage || "Treinamento"} • ${tutorial.duration || "Duracao nao informada"}`;
+      const embedUrl = toEmbedUrl(tutorial.url);
+      player.src = `${embedUrl}?autoplay=1&rel=0`;
       openModal(modal);
     });
   });
@@ -143,6 +176,18 @@ function initVideoModal() {
       player.src = "";
       closeModal(modal);
     }
+  });
+}
+
+function initTutorialMeta() {
+  const fields = [...document.querySelectorAll("[data-tutorial-meta]")];
+  if (!fields.length) return;
+
+  fields.forEach((field) => {
+    const key = field.dataset.tutorialMeta;
+    const tutorial = TUTORIALS[key];
+    if (!tutorial) return;
+    field.textContent = `${tutorial.stage || "Treinamento"} • ${tutorial.duration || "Duracao nao informada"}`;
   });
 }
 
@@ -265,6 +310,7 @@ function initReveal() {
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initReveal();
+  initTutorialMeta();
   initTutorialSearch();
   initVideoModal();
   initFeedback();

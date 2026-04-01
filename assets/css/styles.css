@@ -599,6 +599,40 @@ body::before {
   display: none;
 }
 
+.tutorial-title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tutorial-svg {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(14, 165, 233, 0.14);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  color: #0284c7;
+}
+
+:root[data-theme="dark"] .tutorial-svg {
+  color: #7dd3fc;
+  background: rgba(14, 165, 233, 0.18);
+  border-color: rgba(125, 211, 252, 0.24);
+}
+
+.tutorial-svg svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .tutorial-tag {
   display: inline-flex;
   width: fit-content;
@@ -621,6 +655,13 @@ body::before {
   margin: 0.42rem 0 0;
   color: var(--text-muted);
   font-size: 0.89rem;
+}
+
+.tutorial-meta {
+  display: inline-block;
+  margin-top: 0.45rem;
+  color: var(--text-soft);
+  font-size: 0.78rem;
 }
 
 .tutorial-actions {
@@ -813,6 +854,12 @@ body::before {
   padding: 0.34rem 0.72rem;
   font-weight: 700;
   cursor: pointer;
+}
+
+.modal-meta {
+  margin: 0.38rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.82rem;
 }
 
 .video-frame {
