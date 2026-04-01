@@ -2,10 +2,10 @@ const STORAGE_THEME_KEY = "integrafarma_theme";
 const LEGACY_THEME_KEY = "theme";
 const STORAGE_FEEDBACK_KEY = "integrafarma_tutorial_feedback_v1";
 
-// Atualize os links dos videos aqui quando voce me enviar.
+// Atualize os links dos vídeos aqui quando você me enviar.
 const TUTORIALS = {
   cadastro: {
-    title: "Cadastro de usuarios",
+    title: "Cadastro de usuários",
     url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     duration: "3-5 min",
     stage: "Etapa 1",
@@ -17,13 +17,13 @@ const TUTORIALS = {
     stage: "Etapa 2",
   },
   movimentacao: {
-    title: "Movimentacao entre estoques",
+    title: "Movimentação entre estoques",
     url: "https://www.youtube.com/watch?v=5qap5aO4i9A",
     duration: "4-6 min",
     stage: "Etapa 3",
   },
   dispensacao: {
-    title: "Dispensacao",
+    title: "Dispensação",
     url: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
     duration: "5-8 min",
     stage: "Etapa 4",
@@ -152,7 +152,7 @@ function initVideoModal() {
       const tutorial = TUTORIALS[key];
       if (!tutorial) return;
       title.textContent = tutorial.title;
-      meta.textContent = `${tutorial.stage || "Treinamento"} • ${tutorial.duration || "Duracao nao informada"}`;
+      meta.textContent = `${tutorial.stage || "Treinamento"} • ${tutorial.duration || "Duração não informada"}`;
       const embedUrl = toEmbedUrl(tutorial.url);
       player.src = `${embedUrl}?autoplay=1&rel=0`;
       openModal(modal);
@@ -187,7 +187,7 @@ function initTutorialMeta() {
     const key = field.dataset.tutorialMeta;
     const tutorial = TUTORIALS[key];
     if (!tutorial) return;
-    field.textContent = `${tutorial.stage || "Treinamento"} • ${tutorial.duration || "Duracao nao informada"}`;
+    field.textContent = `${tutorial.stage || "Treinamento"} • ${tutorial.duration || "Duração não informada"}`;
   });
 }
 
@@ -203,15 +203,17 @@ function feedbackSummary(item) {
   const yes = Number(item?.yes || 0);
   const no = Number(item?.no || 0);
   const total = yes + no;
-  if (!total) return "Sem avaliacoes ainda.";
-  return `${total} avaliacao(oes): ${yes} sim, ${no} nao.`;
+  if (!total) return "";
+  return `${total} avaliação(ões): ${yes} sim, ${no} não.`;
 }
 
 function renderFeedbackCounters(state) {
   Object.keys(TUTORIALS).forEach((tutorialKey) => {
     const counter = byId(`feedbackCount-${tutorialKey}`);
     if (!counter) return;
-    counter.textContent = feedbackSummary(state[tutorialKey]);
+    const summary = feedbackSummary(state[tutorialKey]);
+    counter.textContent = summary;
+    counter.hidden = !summary;
   });
 }
 
